@@ -1,5 +1,6 @@
-import { Component } from "react";
-
+import PropTypes from 'prop-types';
+import { Component } from 'react';
+import {SearchBar, SerchForm, Input,SearchBtn,SerchFormBtnLabel,} from './Serchbar.styled'
 
 export class Searchbar extends Component {
   state = {
@@ -10,7 +11,7 @@ export class Searchbar extends Component {
     this.setState({ text: event.target.value });
   };
 
-   hendleSubmit = event => {
+  hendleSubmit = event => {
     event.preventDefault();
     const { text } = this.state;
     if (!text.trim()) {
@@ -18,33 +19,34 @@ export class Searchbar extends Component {
       return;
     }
     this.props.onChangeQuery(text);
-     this.setState({ text: '' });
-}
+    this.setState({ text: '' });
+  };
 
   render() {
     return (
-        <>
-      <header className="searchbar">
-        <form className="form" onSubmit={this.hendleSubmit}>
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
-          </button>
+      <>
+        <SearchBar>
+          <SerchForm className="form" onSubmit={this.hendleSubmit}>
+            <SearchBtn type="submit" className="button">
+              <SerchFormBtnLabel>Search</SerchFormBtnLabel>
+            </SearchBtn>
 
-          <input
-            value={this.state.text}
-            className="input"
-            type="text"
-            // autocomplete="off"
-            // autofocus
-            placeholder="Search images and photos"
-            onChange={this.hendleChange}
-          />
-        </form>
-      </header>
+            <Input
+              value={this.state.text}
+              className="input"
+              type="text"
+              autocomplete="off"
+              autofocus
+              placeholder="Search images and photos"
+              onChange={this.hendleChange}
+            />
+          </SerchForm>
+        </SearchBar>
       </>
-    )
+    );
   }
 }
 
-
-
+Searchbar.propTypes = {
+  onChange: PropTypes.func,
+};

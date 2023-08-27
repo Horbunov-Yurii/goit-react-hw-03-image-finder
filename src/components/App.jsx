@@ -2,9 +2,10 @@ import { Searchbar } from "./Searchbar/Searchbar";
 import { Component } from "react";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { getImages } from '../service/galleryService'
-import { Button } from "./Button/Button";
+import { LoadMoreButton } from './Button/Button';
 import { Modal } from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
+import { AppContainer } from "./App.styled";
 
 
 
@@ -60,15 +61,17 @@ export class App extends Component {
   render() {
     const { hits, isEmpty, showBtn, isError, src, alt, isLoading } = this.state;
     return (
-      <>
+      <AppContainer>
         <Searchbar onChangeQuery={this.changeQuery} />
         <ImageGallery hits={hits} openModal={this.handleOpenModal} />
-        {showBtn && <Button handleClick={this.loadMore} text="Load more" />}
+        {showBtn && (
+          <LoadMoreButton handleClick={this.loadMore} text="Load more" />
+        )}
         {isEmpty && <p>Enter a valid request</p>}
         {isError && <p>{isError}</p>}
         {src && <Modal closeModal={this.handleOpenModal} src={src} alt={alt} />}
         {isLoading && <Loader />}
-      </>
+      </AppContainer>
     );
   }
 }

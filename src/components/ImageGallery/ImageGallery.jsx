@@ -1,6 +1,7 @@
-import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
+import PropTypes from 'prop-types';
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 
-export const ImageGallery = ({ hits, openModal}) => {
+export const ImageGallery = ({ hits, openModal }) => {
   return (
     <>
       <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -19,5 +20,11 @@ export const ImageGallery = ({ hits, openModal}) => {
 };
 
 
-
-
+ImageGallery.propTypes = {
+  hits: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ),
+  openModal: PropTypes.func,
+};
