@@ -35,8 +35,8 @@ export class Searchbar extends Component {
               value={this.state.text}
               className="input"
               type="text"
-              autocomplete="off"
-              autofocus
+              // autocomplete="off"
+              // autofocus
               placeholder="Search images and photos"
               onChange={this.hendleChange}
             />
